@@ -1,12 +1,8 @@
-// src/config/data-source.ts
 import 'reflect-metadata';
 import { DataSource } from 'typeorm';
-import * as dotenv from 'dotenv';
-
+import dotenv from 'dotenv';
 
 dotenv.config();
-
-const isSSL = process.env.DB_SSL === 'true';
 
 export const AppDataSource = new DataSource({
   type: 'postgres',
@@ -14,17 +10,13 @@ export const AppDataSource = new DataSource({
   port: parseInt(process.env.DB_PORT || '5432'),
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
+  database: process.env.DB_DATABASE,
   synchronize: false,
   logging: true,
-  entities: ['src/models/**/*.ts'],
-  migrations: ['src/migrations/**/*.ts'],
-  ssl: isSSL,
-  extra: isSSL
-    ? {
-        ssl: {
-          rejectUnauthorized: false,
-        },
-      }
-    : {},
+  entities: ['dist/models/**/*.js'],
+  migrations: ['dist/migrations/**/*.js'],
+  ssl: process.env.DB_SSL === 'true',
+  extra: {
+    ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : undefined,
+  },
 });

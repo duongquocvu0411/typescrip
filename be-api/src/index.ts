@@ -35,7 +35,7 @@ app.use('/api/moments', momentRouter);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Kết nối DB và khởi động server
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 AppDataSource.initialize()
   .then(() => {
