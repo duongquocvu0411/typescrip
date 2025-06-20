@@ -15,10 +15,7 @@ const app = express();
 // CORS: cho phép từ local và Netlify
 app.use(
   cors({
-    origin: [
-      'http://localhost:3001',
-      'https://nguyenngoctram-le-tot-nghiep.netlify.app',
-    ],
+    origin:"*",
     credentials: true,
   })
 );
