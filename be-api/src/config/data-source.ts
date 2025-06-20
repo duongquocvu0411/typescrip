@@ -16,8 +16,8 @@ export const AppDataSource = new DataSource({
   synchronize: false,
   logging: true,
   entities: isProd
-    ? ['dist/models/**/*.js']     // Khi chạy bằng `npm start`
-    : ['src/models/**/*.ts'],     // Khi dev bằng `npm run dev`
+    ? ['dist/models/**/*.js']
+    : ['src/models/**/*.ts'],  // 👈 chạy dev phải dùng .ts
   migrations: isProd
     ? ['dist/migrations/**/*.js']
     : ['src/migrations/**/*.ts'],
